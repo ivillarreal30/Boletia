@@ -1,0 +1,12 @@
+.carousel-inner{
+    height: 400px
+}
+.carousel-inner img{
+    height: 400px;
+    width: 100%
+}
+
+h1{
+    margin: 20px 0;
+    text-align: center
+}
