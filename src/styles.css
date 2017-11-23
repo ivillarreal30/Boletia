@@ -1,1 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
+h1{
+    margin: 20px 0;
+    text-align: center
+}
+
+section{
+    padding-top: 59px;
+    margin: auto;
+    overflow:hidden;
+}
+
+.text-muted{
+    color: red !important
+}
+
+.ng-invalid{
+    border-color: #dc3545;
+}
+
+.ng-valid{
+    border-color: #28a745;
+}
+
+.ng-untouched{
+    border-color: #333;
+}
