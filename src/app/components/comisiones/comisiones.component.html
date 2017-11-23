@@ -1,27 +1,49 @@
 <section>
-	<div class="container">
-		<div class="row">
-			<h1 class="col-lg-12">Agrega Comisiones</h1>
-			<form class="col-lg-6 offset-lg-3" [formGroup]="comisionForm" (submit)="saveComision()">
-				<fieldset>
-					<div class="form-group">
-						<label for="descripcion">Nombre de la Comision</label>
-						<input id="descripcion" [(ngModel)]="model.descripcion" formControlName="descripcion" type="text" class="form-control"  placeholder="Pago con tarjeta debito">
-						<small *ngIf="!comisionForm.controls['descripcion'].valid && comisionForm.controls['descripcion'].touched"  class="form-text text-muted">Este campo es requerido.</small>
-					</div>
-					<div class="form-group">
-						<label for="porcentaje">Porcentaje de la Comision</label>
-						<input id="porcentaje" [(ngModel)]="model.porcentaje" formControlName="porcentaje" type="text" class="form-control"   placeholder="10% o 0">
-						<small *ngIf="!comisionForm.controls['porcentaje'].valid && comisionForm.controls['porcentaje'].touched"   class="form-text text-muted">Este campo es requerido.</small>
-					</div>
-					<div class="form-group">
-						<label for="cantidad">Cantidad de la Comision</label>
-						<input id="cantidad" [(ngModel)]="model.cantidad" formControlName="cantidad" type="text" class="form-control" placeholder="$10.00 o 0">
-						<small *ngIf="!comisionForm.controls['cantidad'].valid && comisionForm.controls['cantidad'].touched"   class="form-text text-muted">Este campo es requerido.</small>
-					</div>
-					<button type="submit" class="btn btn-primary" [disabled]="!comisionForm.valid">Agregar</button>
-				</fieldset>
-			</form>
-		</div>
-	</div>
+  <div class="container">
+    <div class="row">
+      <h1 class="col-lg-12">Agrega Comisiones</h1>
+      <form class="col-lg-6 offset-lg-3" [formGroup]="comisionForm" (submit)="saveComision()">
+        <fieldset>
+          <div class="form-group">
+            <label for="descripcion">Nombre de la Comision</label>
+            <input id="descripcion" [(ngModel)]="model.descripcion" formControlName="descripcion" type="text" class="form-control" placeholder="Pago con tarjeta debito">
+            <small *ngIf="!comisionForm.controls['descripcion'].valid && comisionForm.controls['descripcion'].touched" class="form-text text-muted message-error">Este campo es requerido.</small>
+          </div>
+          <div class="form-group">
+            <label for="porcentaje">Porcentaje de la Comision</label>
+            <input id="porcentaje" [(ngModel)]="model.porcentaje" formControlName="porcentaje" type="text" class="form-control" placeholder="10% o 0">
+            <small *ngIf="!comisionForm.controls['porcentaje'].valid && comisionForm.controls['porcentaje'].touched" class="form-text text-muted message-error">Este campo es requerido.</small>
+          </div>
+          <div class="form-group">
+            <label for="cantidad">Cantidad de la Comision</label>
+            <input id="cantidad" [(ngModel)]="model.cantidad" formControlName="cantidad" type="text" class="form-control" placeholder="$10.00 o 0">
+            <small *ngIf="!comisionForm.controls['cantidad'].valid && comisionForm.controls['cantidad'].touched" class="form-text text-muted message-error">Este campo es requerido.</small>
+          </div>
+          <button type="submit" class="btn btn-primary" [disabled]="!comisionForm.valid">Agregar</button>
+        </fieldset>
+      </form>
+    </div>
+
+    <div *ngIf="comisiones" class="row" style="margin:20px 0">
+			<h1 class="col-lg-12">Comisiones</h1>
+      <table class="table table-striped table-hover table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <th>#</th>
+            <th>Nombre</th>
+            <th>Porcentaje %</th>
+            <th>Cantidad $</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let comision of comisiones">
+            <td>{{ comision.id_comision }}</td>
+            <td>{{ comision.descripcion }}</td>
+            <td>{{ comision.porcentaje }}</td>
+            <td>{{ comision.cantidad }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </section>

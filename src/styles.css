@@ -1,27 +1,40 @@
 /* You can add global styles to this file, and also import other style files */
-h1{
-    margin: 20px 0;
-    text-align: center
+
+h1 {
+  margin: 20px 0;
+  text-align: center
 }
 
-section{
-    padding-top: 59px;
-    margin: auto;
-    overflow:hidden;
+section {
+  padding-top: 59px;
+  margin: auto;
+  overflow: hidden;
 }
 
-.text-muted{
-    color: red !important
+.message-error {
+  color: red !important
 }
 
-.ng-invalid{
-    border-color: #dc3545;
+.ng-invalid {
+  border-color: #dc3545;
 }
 
-.ng-valid{
-    border-color: #28a745;
+.ng-valid {
+  border-color: #28a745;
 }
 
-.ng-untouched{
-    border-color: #333;
+.ng-untouched {
+  border-color: #333;
+}
+
+table {
+  text-align: center;
+}
+
+.thead-dark th{
+	background-color: #555 !important
+}
+
+li{
+  list-style: none;
 }
