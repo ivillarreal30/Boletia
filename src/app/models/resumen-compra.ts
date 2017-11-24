@@ -24,7 +24,6 @@ export class ResumenCompra {
 					totalComisiones = totalComisiones + (cantidadTotal *  parseInt(comision.cantidad.toString()));
 				}
 			}
-			debugger
 			if (totalComisiones) {
 				this.comisiones = parseFloat(totalComisiones.toFixed(2));
 			}

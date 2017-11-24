@@ -34,13 +34,7 @@ export class CompraBoletosComponent implements OnInit {
 
   ngOnInit() {
     this.eventos = this.getEventos();
-    this.eventos[0].comisiones.map(comision => {
-      if (comision.descripcion.indexOf("boletia") < 0) {
-        this.comisiones.push(comision);
-      } else {
-        this.comision_boletia = comision;
-      }
-    });
+
     this.route.params.subscribe(params => {
       let id = params["id"];
       let evento = this.eventos.filter(evento => {
@@ -53,6 +47,15 @@ export class CompraBoletosComponent implements OnInit {
         this.redirect.navigate(['/home']);
       }
     });
+
+    this.evento.comisiones.map(comision => {
+      if (comision.descripcion.indexOf("boletia") < 0) {
+        this.comisiones.push(comision);
+      } else {
+        this.comision_boletia = comision;
+      }
+    });
+    
   }
 
   getEventos(): any {
@@ -78,6 +81,7 @@ export class CompraBoletosComponent implements OnInit {
   changeFormaPago(id) {
     if (id == "null") {
       this.comision_forma_pago = null;
+      this.calcBoletos();
     } else {
       this.comision_forma_pago = new Comision(null, null, null, null);
       let comisiones = this.comisiones.filter(comision => {
