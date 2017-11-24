@@ -2,31 +2,36 @@
   <div class="container">
     <div class="row">
       <h1 class="col-lg-12">Agrega Eventos</h1>
-      <form class="col-lg-6 offset-lg-3" [formGroup]="eventForm" (submit)="saveEvent()">
+      <form class="col-lg-6 offset-lg-3" [formGroup]="eventForm">
         <fieldset>
           <div class="form-group">
             <label>Nombre del Evento</label>
-            <input formControlName="nombre" type="text" class="form-control" placeholder="Concierto Principal">
+            <input [(ngModel)]="model.descripcion" formControlName="nombre" type="text" class="form-control" placeholder="Concierto Principal">
             <small *ngIf="!eventForm.controls['nombre'].valid && eventForm.controls['nombre'].touched" class="form-text text-muted message-error">Este campo es requerido.</small>
           </div>
           <div class="form-group">
             <label>Fecha del Evento</label>
-            <input formControlName="fecha" type="text" class="form-control" placeholder="09/05/2018">
+            <input [(ngModel)]="model.fecha" formControlName="fecha" type="text" class="form-control" placeholder="09/05/2018">
             <small *ngIf="!eventForm.controls['fecha'].valid && eventForm.controls['fecha'].touched" class="form-text text-muted message-error">Este campo es requerido.</small>
           </div>
           <div class="form-group">
             <label>Lugar del Evento</label>
-            <input formControlName="lugar" type="text" class="form-control" placeholder="Capital de Mexico">
+            <input [(ngModel)]="model.lugar" formControlName="lugar" type="text" class="form-control" placeholder="Capital de Mexico">
             <small *ngIf="!eventForm.controls['lugar'].valid && eventForm.controls['lugar'].touched" class="form-text text-muted message-error">Este campo es requerido.</small>
           </div>
           <div class="form-group">
             <label>Horario del Evento</label>
-            <input formControlName="horario" type="text" class="form-control" placeholder="5:00 pm.">
+            <input [(ngModel)]="model.horario" formControlName="horario" type="text" class="form-control" placeholder="5:00 pm.">
             <small *ngIf="!eventForm.controls['horario'].valid && eventForm.controls['horario'].touched" class="form-text text-muted message-error">Este campo es requerido.</small>
+          </div>
+					<div class="form-group">
+            <label>Costo del Evento</label>
+            <input [(ngModel)]="model.costo" formControlName="costo" type="text" class="form-control" placeholder="$100">
+            <small *ngIf="!eventForm.controls['costo'].valid && eventForm.controls['costo'].touched" class="form-text text-muted message-error">Este campo es requerido.</small>
           </div>
           <div class="form-group">
 							<label>Organizador</label>
-							<select (change)="onChange($event.target.value)" class="form-control">
+							<select formControlName="id_organizador" [(ngModel)]="model.id_organizador" (ngModelChange)="onChange($event)" class="form-control">
 								<option value="0">Ninguno</option>
 								<option [value]="organizador.id_organizador" *ngFor="let organizador of organizadores">{{ organizador.descripcion }}</option>
 							</select>
@@ -36,8 +41,7 @@
 		</div>
 		<div class="row">
 		<div class="col-lg-6 offset-lg-3" style="margin-top:20px">
-				<h3>Comisiones Default</h3>
-
+				<h3>Comisiones Personalizadas</h3>
 				<ul class="list-group">
 					<li *ngFor="let item of comisiones" class="list-group-item">
 						<label class="form-check-label">
@@ -54,7 +58,26 @@
 			</div>
 		</div>
 		<div class="row" style="margin-top:20px">
-				<button type="submit" class="btn btn-primary col-lg-2 offset-lg-5" [disabled]="!eventForm.valid">Agregar</button>
+				<button type="submit" class="btn btn-primary col-lg-2 offset-lg-5" [disabled]="!eventForm.valid" (click)="saveEvent()">Agregar</button>
 		</div>
+				<div *ngIf="eventos.length > 0" class="row" style="margin:40px 0">
+				<h1 class="col-lg-12">Eventos</h1>
+				<table class="table table-striped table-hover table-bordered">
+					<thead class="thead-dark">
+						<tr>
+							<th>#</th>
+							<th>Nombre</th>
+							<th>Fecha</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let evento of eventos">
+							<td>{{ evento.id_evento }}</td>
+							<td>{{ evento.descripcion }}</td>
+							<td>{{ evento.horario }}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
   </div>
 </section>

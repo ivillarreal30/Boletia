@@ -38,3 +38,13 @@ table {
 li{
   list-style: none;
 }
+
+.jumbotron{
+  background-image: url("assets/img/evento-musical.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.display-3{
+  color: white
+}

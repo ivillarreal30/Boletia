@@ -9,22 +9,27 @@ export class ResumenCompra {
 	id_event: number;
 
 	constructor(evento: Evento, boletos: Array<BoletosPedido>) {
-		for(let boleto of boletos){
-			this.subtotal = this.subtotal + (boleto.cantidad * boleto.costo); 
-			this.num_boletos = this.num_boletos + boleto.cantidad;
+		if (evento !== null && boletos !== null) {
+			let cantidadTotal = 0;	
+			for (let boleto of boletos) {
+				cantidadTotal = cantidadTotal + boleto.cantidad;
+				this.subtotal = this.subtotal + (boleto.cantidad * boleto.costo);
+				this.num_boletos = this.num_boletos + boleto.cantidad;
+			}
+			let totalComisiones = 0;
+			for (let comision of evento.comisiones) {
+				if ( parseInt(comision.porcentaje.toString()) > 0) {
+					totalComisiones = totalComisiones + (this.subtotal * (parseFloat(parseFloat(comision.porcentaje.toString()).toFixed(2)) / 100));
+				} else if ( parseInt(comision.cantidad.toString()) > 0) {
+					totalComisiones = totalComisiones + (cantidadTotal *  parseInt(comision.cantidad.toString()));
+				}
+			}
+			debugger
+			if (totalComisiones) {
+				this.comisiones = parseFloat(totalComisiones.toFixed(2));
+			}
+			this.total_venta = this.comisiones + this.subtotal;
+			this.id_event = evento.id_evento;
 		}
-		let totalComisiones = 0;
-		for(let comision of evento.comisiones){
-			if(comision.porcentaje){
-				totalComisiones = this.subtotal * comision.porcentaje;
-			}else if(comision.cantidad){
-				totalComisiones = comision.cantidad;
-			}	
-		}
-		if(totalComisiones){
-			this.comisiones = totalComisiones;
-		}
-		this.total_venta = this.comisiones = this.subtotal;
-		this.id_event = evento.id_evento;
 	}
 }

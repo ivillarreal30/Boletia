@@ -33,7 +33,6 @@ export class ComisionesComponent implements OnInit {
 
   saveComision() {
     if (this.comisionForm.dirty && this.comisionForm.valid) {
-      debugger
       if(!this.comisiones){
         this.comisiones = new Array<Comision>();
       }

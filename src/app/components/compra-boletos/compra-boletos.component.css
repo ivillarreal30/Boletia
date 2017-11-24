@@ -1,0 +1,18 @@
+.justify{
+    text-align: justify
+}
+
+table{
+    text-align: justify
+}
+
+.card{
+    margin-bottom: 30px;
+}
+
+.border-info{
+    color: #17a2b8 !important;    
+}
+.border-success{
+    color: #28a745 !important;
+}

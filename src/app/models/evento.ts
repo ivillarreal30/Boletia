@@ -8,6 +8,7 @@ export class Evento {
   lugar:string;
   horario: Date;
   comisiones: Array<Comision>;
+  costo:number;
   
   constructor(id_evento:number,
   id_organizador:number,
@@ -15,7 +16,8 @@ export class Evento {
   fecha:Date,
   lugar:string,
   horario: Date,
-  comisiones: Array<Comision>){
+  comisiones: Array<Comision>,
+  costo:number){
     this.id_evento = id_evento;
     this.id_organizador = id_organizador;
     this.descripcion = descripcion;
@@ -23,5 +25,6 @@ export class Evento {
     this.lugar = lugar;
     this.horario = horario;
     this.comisiones = comisiones;
+    this.costo = costo;
   }
 }

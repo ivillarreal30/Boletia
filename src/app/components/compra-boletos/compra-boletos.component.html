@@ -1,0 +1,97 @@
+<section>
+  <div class="jumbotron">
+    <h1 class="display-3">{{ evento.descripcion }}</h1>
+  </div>
+  <div class="container">
+
+    <div class="card border-primary">
+      <div class="card-body">
+        <blockquote class="card-blockquote">
+          <h1 class="justify">1 Cuantos boletos necesitas?</h1>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Tipo de boleto</th>
+                <th>Costo del Boleto</th>
+                <th>Cantidad</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Entrada General</td>
+                <td>${{ evento.costo }}</td>
+                <td><select (change)="changeCantidad($event.target.value)" class="form-control">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </select></td>
+              </tr>
+            </tbody>
+          </table>
+          <footer><button type="button" class="btn btn-outline-primary" (click)="calcBoletos()">Continuar</button></footer>
+        </blockquote>
+      </div>
+    </div>
+
+    <div *ngIf="show && boletosTotal" class="card border-info">
+      <div class="card-body">
+        <blockquote class="card-blockquote">
+          <h1 class="justify">2 Escoge tu método de pago</h1>
+          <div class="col-lg-8 offset-lg-2">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Método de Pago</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><select (change)="changeFormaPago($event.target.value)" class="form-control">
+                  <option value="null">Seleccionar...</option>
+                  <option *ngFor="let comision of comisiones" value="{{comision.id_comision}}">{{comision.descripcion}}</option>
+                </select></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </blockquote>
+        <div *ngIf="!comision_forma_pago" class="card text-white bg-info col-lg-4 offset-lg-4">
+          <div class="card-body">
+            <blockquote class="card-blockquote">
+              <h5>Resumen de Compra</h5>
+              <p>{{resumen_compra.num_boletos}} boleto(s) ${{evento.costo}}</p>
+              <p>Subtotal: ${{resumen_compra.subtotal}}</p>
+              <p>+ Comisión: ${{resumen_compra.comisiones}}</p>
+              <hr>
+              <p>Total: ${{resumen_compra.total_venta}}</p>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="show && comision_forma_pago" class="card border-success">
+      <div class="card-body">
+        <blockquote class="card-blockquote">
+          <h1 class="justify">3 Terminaste tu Compra</h1>
+        </blockquote>
+        <div class="card text-white bg-success col-lg-6 offset-lg-3">
+          <div class="card-body">
+            <blockquote class="card-blockquote">
+              <h3>Total de la Venta</h3>
+              <p>{{resumen_compra.num_boletos}} boleto(s) ${{evento.costo}}</p>
+              <p>Subtotal: ${{resumen_compra.subtotal}}</p>
+              <p>+ Comisión: ${{resumen_compra.comisiones}}</p>
+              <hr>
+              <p>Total: ${{resumen_compra.total_venta}}</p>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</section>

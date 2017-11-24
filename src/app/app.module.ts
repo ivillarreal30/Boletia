@@ -9,6 +9,7 @@ import { ComisionesComponent } from './components/comisiones/comisiones.componen
 import { EventosComponent } from './components/eventos/eventos.component';
 import { HomeComponent } from './components/home/home.component';
 import { AppRoutingModule } from './/app-routing.module';
+import { CompraBoletosComponent } from './components/compra-boletos/compra-boletos.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { AppRoutingModule } from './/app-routing.module';
     OrganizadoresComponent,
     ComisionesComponent,
     EventosComponent,
-    HomeComponent
+    HomeComponent,
+    CompraBoletosComponent
   ],
   imports: [
     BrowserModule,
